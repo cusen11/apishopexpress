@@ -1,0 +1,104 @@
+###
+//registration
+POST http://localhost:4000/api/registration
+Content-Type: application/json
+
+{
+    "username": "cusen11",
+    "password": "123456"
+}
+
+
+###
+//login
+POST http://localhost:4000/api/login
+Content-Type: application/json
+
+{
+    "username": "cusen15",
+    "password": "123456"
+}
+
+###
+//xem toàn bộ product
+GET http://localhost:4000/api/product 
+
+###
+//thêm product
+POST http://localhost:4000/api/product
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGQwYjMwMWExNDc4MTQ4NjgxMmQyNmQiLCJpYXQiOjE2MjQ1NTA2MTN9.4-J1AXf-GZRab41S06vCBcgkvy4sK4_QupdUfKlEwj8
+
+{
+    "name":"Product 11",
+    "description":"Thông tin sản phẩm được ghi ở đây để cho nó dài ra người ta dễ đọc",
+    "price":"150.000đ",
+    "images":"abc.jpg"
+}
+
+###
+//Sửa product
+PUT http://localhost:4000/api/product/:id
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGQwYjMwMWExNDc4MTQ4NjgxMmQyNmQiLCJpYXQiOjE2MjQ1NTA2MTN9.4-J1AXf-GZRab41S06vCBcgkvy4sK4_QupdUfKlEwj8
+
+{
+    "name":"Product 11",
+    "description":"Thông tin sản phẩm được ghi ở đây để cho nó dài ra người ta dễ đọc",
+    "price":"150.000đ",
+    "images":"abc.jpg"
+}
+
+###
+//thêm list images
+POST http://localhost:4000/api/listImage/:id
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGQwYjMwMWExNDc4MTQ4NjgxMmQyNmQiLCJpYXQiOjE2MjQ1NTA2MTN9.4-J1AXf-GZRab41S06vCBcgkvy4sK4_QupdUfKlEwj8
+
+{
+    "files":["list file"] 
+}
+
+### 
+// tìm list images dựa by id product
+GET http://localhost:4000/api/images/123123
+
+
+###
+//thêm settings
+POST http://localhost:4000/api/settings
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGQwYjMwMWExNDc4MTQ4NjgxMmQyNmQiLCJpYXQiOjE2MjQ1NTA2MTN9.4-J1AXf-GZRab41S06vCBcgkvy4sK4_QupdUfKlEwj8
+
+{
+    "logo":"abc.svg",
+    "companyname":"Tuân Company1",
+    "slogan":"đây là câu slogan chất chơi con bà dơi",
+    "facebook":"facebook.com",
+    "zalo":"zalo.me",
+    "skype":"abc@sksdjsd.skpe",
+    "viber":"01230111",
+    "instargram":"intersen",
+    "mail":"abc@gmail.com",
+    "address":"đây là địa chỉ",
+    "phone":"0123123132"
+}
+###
+//Update settings
+PUT http://localhost:4000/api/updatesettings/60d97bd83d980e1878755a6a
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGQwYjMwMWExNDc4MTQ4NjgxMmQyNmQiLCJpYXQiOjE2MjQ1NTA2MTN9.4-J1AXf-GZRab41S06vCBcgkvy4sK4_QupdUfKlEwj8
+
+{
+    "logo":"abc.svg",
+    "companyname":"Tuân Company2",
+    "slogan":"đây là câu slogan chất chơi con bà dơi3",
+    "facebook":"facebook.com/cusenbonchen",
+    "zalo":"zalo.me",
+    "skype":"abc@sksdjsd.skpe",
+    "viber":"01230111",
+    "instargram":"intersen",
+    "mail":"abc@gmail.com",
+    "address":"đây là địa chỉ",
+    "phone":"0123123132"
+}
