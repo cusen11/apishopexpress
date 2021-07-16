@@ -8,6 +8,7 @@ const authorization = require('./router/user/Auth')
 const productRouter = require('./router/product/product')
 const imagesRouter = require('./router/Images/images')
 const settingsRouter = require('./router/Setting/setting')
+const blogRouter = require('./router/Blogs/Blog')
 
 
 app.use(cors());
@@ -41,15 +42,7 @@ app.use('/api',authorization)
 app.use('/api',productRouter)
 app.use('/api',imagesRouter)
 app.use('/api',settingsRouter)
-// list product
- 
-app.get('/listProduct', async (req,res)=>{
-    const listProduct = await product.find({product: product._id})
-    res.render('listProduct',{products:listProduct})
-})
-app.get("/addproduct", (req,res)=>{
-    res.render("product");
-}) 
+app.use('/api',blogRouter) 
 
 const port = process.env.PORT || 4000
 app.listen(port, ()=> console.log("Server start thành công !!! Port " + port))
