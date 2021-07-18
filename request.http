@@ -127,7 +127,7 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGQwYjMwMWExNDc4MTQ4NjgxMmQyNmQiLCJpYXQiOjE2MjQ1NTA2MTN9.4-J1AXf-GZRab41S06vCBcgkvy4sK4_QupdUfKlEwj8
 
 {
-   "title":"bài post số 2 edit2", 
+   "title":"bài post số 2 edit23", 
    "description": "viết vài dòng cho dài dài edit2",
    "content": "edit2 lorem a cà chemlorem a cà chemlorem a cà chemlorem a cà chemlorem a cà chem..",
    "category":"edit2 8 chuyện 2",
@@ -135,5 +135,5 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGQwY
 }
 ###
 //xóa blog
-DELETE http://localhost:4000/api/blog/remove/60f154fadcf236208c60bc19
+DELETE http://localhost:4000/api/blog/remove/60f1517590eda8149c3ba0e9
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGQwYjMwMWExNDc4MTQ4NjgxMmQyNmQiLCJpYXQiOjE2MjQ1NTA2MTN9.4-J1AXf-GZRab41S06vCBcgkvy4sK4_QupdUfKlEwj8
