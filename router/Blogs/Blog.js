@@ -41,7 +41,7 @@ router.post('/blog/add',veryToken, async (req,res)=>{
 
  //Method POST
 // Edit Blog
-router.post('/blog/edit/:id',veryToken, async (req,res)=>{
+router.put('/blog/edit/:id',veryToken, async (req,res)=>{
     const { id } = req.params
     const { title, description,content,category,thumbnail } = req.body
     const updateBlog = {
@@ -68,7 +68,7 @@ router.post('/blog/edit/:id',veryToken, async (req,res)=>{
 
  //Method POST
  //Delete Blog
- router.post('/blog/remove/:id', veryToken, async(req,res) =>{
+ router.delete('/blog/remove/:id', veryToken, async(req,res) =>{
     const { id } = req.params
     blog.deleteOne({_id: id },(err)=>{
         if(err){
