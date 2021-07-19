@@ -29,7 +29,7 @@ router.post('/registration', async(req,res)=>{
         // sign token
         const accessToken = jwt.sign({userId: newUser._id}, process.env.ACCESS_TOKEN_SECRET)
 
-        res.send({success:true, message:"Create user success!!!", accessToken}) 
+        res.status(200).json({success:true, message:"Create user success!!!", accessToken}) 
     } catch (error) {
         console.log(error)
     }
@@ -51,7 +51,7 @@ router.post('/login',async (req,res)=> {
         //sign
         const accessToken = await jwt.sign({userId: userlogin._id}, process.env.ACCESS_TOKEN_SECRET)
         
-        res.send({success: true, message: "Login success!!!", accessToken})
+        res.status(200).json({success: true, message: "Login success!!!", accessToken})
     } catch (error) {
         console.log(error)
     }

@@ -64,12 +64,7 @@ router.post('/product/:id',verifyToken,upload.single("image"), async (req,res)=>
         console.log(error)
     }  
 }) 
-
-router.post('/product1',upload.any(), async (req,res)=>{   
-    res.status(200).json({success: true, message:"Create product success!!!"})
-     
-}) 
-
+ 
 //post list images in product 
 
 router.post('/listImage/:id',verifyToken,upload.array("files"), async (req,res)=>{ 
@@ -98,8 +93,31 @@ router.post('/listImage/:id',verifyToken,upload.array("files"), async (req,res)=
     }  
 }) 
 
+//Method POST
+//Search Products
+router.post('/search-products', (req,res)=>{   
+    try {
+        const { query } = req.body 
+        product.find({name: { $regex: query}}).
+        then(data=> res.send({results: data}))
+    } catch (error) {
+         console.log(error)
+    } 
+})
+//Method POST
+//Pagination Products
+router.post('/products', async(req,res)=>{ 
+    try {
+        const { page, limit } = req.body  
+        const pageNum = parseInt(page - 1 ) || 0
+        const total = await product.countDocuments({})
+        const products = await product.find({}).limit(parseInt(limit)).skip(limit*pageNum)
+        res.status(200).json({currentPage:page, results: products,totalItem:total, totalPage:Math.ceil(total/limit)})
+    } catch (error) {
+        
+    }
 
-
+})
 
 module.exports = router
 

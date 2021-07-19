@@ -2,8 +2,7 @@ const express = require("express");
 require("dotenv").config()
 const app = express();  
 app.use(express.json());
-const cors = require('cors');
-const product = require('./models/product')
+const cors = require('cors'); 
 const authorization = require('./router/user/Auth')
 const productRouter = require('./router/product/product')
 const imagesRouter = require('./router/Images/images')

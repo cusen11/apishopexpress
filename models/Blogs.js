@@ -15,7 +15,8 @@ const blogs = new schema({
     },
     category:{
         type:String,
-        default:'Chưa phân loại'
+        enum: ['Làm đẹp','Thời trang','Model', 'Khác'],
+        default:'Khác'
     },
     thumbnail:{
         type:String
@@ -27,7 +28,7 @@ const blogs = new schema({
     createAt:{
         type:Date,
         default:Date.now()
-    } 
+    }
 })
 
 module.exports = mongoose.model('blog', blogs)

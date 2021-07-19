@@ -70,16 +70,45 @@ router.put('/blog/edit/:id',veryToken, async (req,res)=>{
  //Delete Blog
  router.delete('/blog/remove/:id', veryToken, async(req,res) =>{
     const { id } = req.params
-    blog.deleteOne({_id: id },(err)=>{
-        if(err){
-            res.status(400).json({status:false, message: err})
-        }
-        else{
-            res.status(200).json({status:true, message: `Remove success`})
-        }
-    })
+    try {
+        blog.deleteOne({_id: id },(err)=>{
+            if(err){
+                res.status(400).json({status:false, message: err})
+            }
+            else{
+                res.status(200).json({status:true, message: `Remove success`})
+            }
+        })
+    } catch (error) {
+        console.log(err)
+    }
     
  })
+//Method POST
+//Search Blog
+router.post('/search-blog', (req,res)=>{   
+    try {
+        const { query } = req.body  
+        blog.find({ title: { $regex: query}}).
+        then(data=> res.send({results: data}))
+    } catch (error) {
+         console.log(error)
+    }
 
+})
 
+//Method POST
+//Pagination Blog
+router.post('/blogs', async(req,res)=>{ 
+    try {
+        const { page, limit } = req.body  
+        const pageNum = parseInt(page - 1 ) || 0
+        const total = await blog.countDocuments({})
+        const blogs = await blog.find({}).limit(parseInt(limit)).skip(limit*pageNum)
+        res.status(200).json({currentPage:page, results: blogs,totalItem:total, totalPage:Math.ceil(total/limit)})
+    } catch (error) {
+        
+    }
+
+})
 module.exports = router;

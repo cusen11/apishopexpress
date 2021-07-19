@@ -4,7 +4,7 @@ POST http://localhost:4000/api/registration
 Content-Type: application/json
 
 {
-    "username": "cusen11",
+    "username": "cusenbonchen",
     "password": "123456"
 }
 
@@ -15,7 +15,7 @@ POST http://localhost:4000/api/login
 Content-Type: application/json
 
 {
-    "username": "cusen15",
+    "username": "cusenbonchen",
     "password": "123456"
 }
 
@@ -30,7 +30,7 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGQwYjMwMWExNDc4MTQ4NjgxMmQyNmQiLCJpYXQiOjE2MjQ1NTA2MTN9.4-J1AXf-GZRab41S06vCBcgkvy4sK4_QupdUfKlEwj8
 
 {
-    "name":"Product 11",
+    "name":"Sen",
     "description":"Thông tin sản phẩm được ghi ở đây để cho nó dài ra người ta dễ đọc",
     "price":"150.000đ",
     "images":"abc.jpg"
@@ -43,7 +43,7 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGQwYjMwMWExNDc4MTQ4NjgxMmQyNmQiLCJpYXQiOjE2MjQ1NTA2MTN9.4-J1AXf-GZRab41S06vCBcgkvy4sK4_QupdUfKlEwj8
 
 {
-    "name":"Product 11",
+    "name":"Sen",
     "description":"Thông tin sản phẩm được ghi ở đây để cho nó dài ra người ta dễ đọc",
     "price":"150.000đ",
     "images":"abc.jpg"
@@ -64,6 +64,24 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGQwY
 GET http://localhost:4000/api/images/123123
 
 
+### 
+// search products
+POST http://localhost:4000/api/search-products
+Content-Type: application/json
+
+{
+    "query": "sò"
+}
+
+###
+//pagination products
+POST http://localhost:4000/api/products
+Content-Type: application/json
+
+{ 
+    "page": "2",
+    "limit": "1"
+}
 ###
 //thêm settings
 POST http://localhost:4000/api/settings
@@ -114,11 +132,11 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGQwYjMwMWExNDc4MTQ4NjgxMmQyNmQiLCJpYXQiOjE2MjQ1NTA2MTN9.4-J1AXf-GZRab41S06vCBcgkvy4sK4_QupdUfKlEwj8
 
 {
-   "title":"bài post số 3", 
+   "title":"dầu gió 11", 
    "description": "viết vài dòng cho dài dài",
    "content": "lorem a cà chemlorem a cà chemlorem a cà chemlorem a cà chemlorem a cà chem..",
-   "category":"8 chuyện 2",
-   "thumbnail":"1a123.jpg"
+   "thumbnail":"1a123.jpg",
+   "category":"Làm đẹp"
 }
 ###
 // Sửa blog
@@ -127,13 +145,31 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGQwYjMwMWExNDc4MTQ4NjgxMmQyNmQiLCJpYXQiOjE2MjQ1NTA2MTN9.4-J1AXf-GZRab41S06vCBcgkvy4sK4_QupdUfKlEwj8
 
 {
-   "title":"bài post số 2 edit23", 
+   "title":"bài post số 1", 
    "description": "viết vài dòng cho dài dài edit2",
    "content": "edit2 lorem a cà chemlorem a cà chemlorem a cà chemlorem a cà chemlorem a cà chem..",
-   "category":"edit2 8 chuyện 2",
    "thumbnail":"edit21a123.jpg"
 }
 ###
 //xóa blog
-DELETE http://localhost:4000/api/blog/remove/60f1517590eda8149c3ba0e9
+DELETE http://localhost:4000/api/blog/remove/60f15a98af740108fc044f69
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGQwYjMwMWExNDc4MTQ4NjgxMmQyNmQiLCJpYXQiOjE2MjQ1NTA2MTN9.4-J1AXf-GZRab41S06vCBcgkvy4sK4_QupdUfKlEwj8
+
+
+### 
+// search blog
+POST http://localhost:4000/api/search-blog
+Content-Type: application/json
+
+{
+    "query": "dầu gió"
+}
+###
+//pagination blogs
+POST http://localhost:4000/api/blogs
+Content-Type: application/json
+
+{ 
+    "page": "3",
+    "limit": "5"
+}
