@@ -1,18 +1,15 @@
 const express = require("express"); 
+const cors = require('cors'); 
 require("dotenv").config()
 const app = express();  
 app.use(express.json());
-const cors = require('cors'); 
+app.use(cors())
 const authorization = require('./router/user/Auth')
 const productRouter = require('./router/product/product')
 const imagesRouter = require('./router/Images/images')
 const settingsRouter = require('./router/Setting/setting')
 const blogRouter = require('./router/Blogs/Blog')
 
-
-app.use(cors({
-    origin: '*'
-}));
 //connect to database
 const mongoose = require("mongoose");
  
