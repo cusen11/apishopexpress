@@ -3,9 +3,13 @@ const express = require('express')
 const user = require('../../models/user')
 const argon2 = require('argon2')
 const jwt = require('jsonwebtoken')
+const verifyToken = require('../../middleware/auth')
 
 const router = express.Router()  
 
+
+//Method POST
+// đăng ký mới user
 router.post('/registration', async(req,res)=>{ 
     const { username, password, level } = req.body 
     //check null 
@@ -34,7 +38,8 @@ router.post('/registration', async(req,res)=>{
         console.log(error)
     }
 }) 
-
+//Method POST
+//Login
 router.post('/login',async (req,res)=> {
     const {username, password} = req.body  
 
@@ -57,7 +62,26 @@ router.post('/login',async (req,res)=> {
     }
 })
 
-
+//Method DELETE
+//Xóa user
+router.delete('/users/remove/:id', verifyToken, async (req,res)=>{
+    const { id } = req.params
+    const checkAdmin = await user.findOne({_id:id})
+    if(checkAdmin.level == 1){
+        res.status(401).json({success: false, message: "You don't have permission"})
+    }
+    else{ 
+        await user.findByIdAndRemove({_id: id}, (err)=>{
+            if(err){
+                res.status(400).json({success:false, err})
+            }
+            else{
+                res.status(200).json({success:true, message:'Delete user success!!!'})
+            }
+        })
+    }
+    
+})
 
 
 module.exports = router

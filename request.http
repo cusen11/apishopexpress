@@ -4,7 +4,7 @@ POST http://localhost:4000/api/registration
 Content-Type: application/json
 
 {
-    "username": "cusenbonchen",
+    "username": "cusenremove",
     "password": "123456"
 }
 
@@ -18,6 +18,10 @@ Content-Type: application/json
     "username": "cusenbonchen",
     "password": "123456"
 }
+###
+//delete user
+DELETE http://localhost:4000/api/users/remove/60d0b301a14781486812d26d
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGQwYjMwMWExNDc4MTQ4NjgxMmQyNmQiLCJpYXQiOjE2MjQ1NTA2MTN9.4-J1AXf-GZRab41S06vCBcgkvy4sK4_QupdUfKlEwj8
 
 ###
 //xem toàn bộ product
