@@ -10,7 +10,9 @@ const settingsRouter = require('./router/Setting/setting')
 const blogRouter = require('./router/Blogs/Blog')
 
 
-app.use(cors());
+app.use(cors({
+    origin: '*'
+}));
 //connect to database
 const mongoose = require("mongoose");
  
