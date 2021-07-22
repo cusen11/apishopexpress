@@ -118,7 +118,7 @@ router.get('/blog/detail/:id', veryToken ,async(req,res)=>{
     const { id } = req.params
     try {
         const data = await blog.findOne({_id: id}) 
-        res.send({success: true, message:"Vào đố thánh công", data})
+        res.send({success: true, results: data})
     } catch (error) {
         console.log(error)
     }
