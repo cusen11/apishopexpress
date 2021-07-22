@@ -111,4 +111,16 @@ router.post('/blogs', async(req,res)=>{
     }
 
 })
+
+//Method GET
+//get info blog
+router.get('/blog/detail/:id', veryToken ,async(req,res)=>{
+    const { id } = req.params
+    try {
+        const data = await blog.find({_id: id}) 
+        res.send({success: true, message:"Vào đố thánh công", data})
+    } catch (error) {
+        console.log(error)
+    }
+})
 module.exports = router;
