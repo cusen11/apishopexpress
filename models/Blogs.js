@@ -28,7 +28,12 @@ const blogs = new schema({
     createAt:{
         type:Date,
         default:Date.now()
+    },
+    status:{
+        type:Boolean,
+        default: true
     }
+    
 })
 
 module.exports = mongoose.model('blog', blogs)
