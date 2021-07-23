@@ -3,13 +3,21 @@ const cors = require('cors');
 require("dotenv").config()
 const app = express();  
 app.use(express.json());
-app.use(cors())
+var corsOptions = {
+    origin: '*',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204 
+  }
+app.use(cors(corsOptions));
 const authorization = require('./router/user/Auth')
 const productRouter = require('./router/product/product')
 const imagesRouter = require('./router/Images/images')
 const settingsRouter = require('./router/Setting/setting')
 const blogRouter = require('./router/Blogs/Blog')
-
+authorization(app)
+productRouter(app)
+imagesRouter(app)
+settingsRouter(app)
+blogRouter(app)
 //connect to database
 const mongoose = require("mongoose");
  
@@ -41,6 +49,8 @@ app.use('/api',productRouter)
 app.use('/api',imagesRouter)
 app.use('/api',settingsRouter)
 app.use('/api',blogRouter) 
+
+
 
 const port = process.env.PORT || 4000
 app.listen(port, ()=> console.log("Server start thành công !!! Port " + port))
