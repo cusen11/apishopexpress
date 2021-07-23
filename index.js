@@ -3,21 +3,13 @@ const cors = require('cors');
 require("dotenv").config()
 const app = express();  
 app.use(express.json());
-var corsOptions = {
-    origin: '*',
-    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204 
-  }
-app.use(cors(corsOptions));
+app.use(cors())
 const authorization = require('./router/user/Auth')
 const productRouter = require('./router/product/product')
 const imagesRouter = require('./router/Images/images')
 const settingsRouter = require('./router/Setting/setting')
 const blogRouter = require('./router/Blogs/Blog')
-authorization(app)
-productRouter(app)
-imagesRouter(app)
-settingsRouter(app)
-blogRouter(app)
+
 //connect to database
 const mongoose = require("mongoose");
  
