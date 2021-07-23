@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router()
 const veryToken = require('../../middleware/auth')
 const blog = require('../../models/Blogs')
+const {upload} = require('../../helpers/fileHelper');
 
 //Method GET
 // GET all blog
@@ -18,8 +19,8 @@ router.get('/blog/all', veryToken, async(req,res)=>{
 
 //Method POST
 // Create new blog
-router.post('/blog/add',veryToken, async (req,res)=>{
-    const { title, description,content,category,thumbnail } = req.body
+router.post('/blog/add',veryToken, upload.single("image"), async (req,res)=>{
+    const { title, description,content,category } = req.body
     if(!title)
         return res.status(400).json({success:false,message:'missing title'})
     try {
@@ -28,7 +29,7 @@ router.post('/blog/add',veryToken, async (req,res)=>{
             description,
             content,
             category,
-            thumbnail,
+            thumbnail: req.file.filename,
             createBy:req.userId
         })
     await newBlog.save()

@@ -3,7 +3,7 @@ const router = express.Router()
 const product = require('../../models/product')
 const productImagesList = require('../../models/productImages')
 const verifyToken = require('../../middleware/auth')
-const {upload} = require('../../helpers/fileHelper');
+const {upload} = require('../../helpers/fileHelper'); 
 
  
 
