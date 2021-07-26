@@ -19,7 +19,7 @@ router.get('/blog/all', veryToken, async(req,res)=>{
 //Method POST
 // Create new blog
 router.post('/blog/add',veryToken, async (req,res)=>{
-    const { title, description,content,category,thumbnail } = req.body
+    const { title, description,content,category,thumbnail,status } = req.body
     if(!title)
         return res.status(400).json({success:false,message:'missing title'})
     try {
@@ -29,6 +29,7 @@ router.post('/blog/add',veryToken, async (req,res)=>{
             content,
             category,
             thumbnail,
+            status,
             createBy:req.userId
         })
     await newBlog.save()
