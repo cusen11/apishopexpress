@@ -19,8 +19,8 @@ router.get('/blog/all', veryToken, async(req,res)=>{
 
 //Method POST
 // Create new blog
-router.post('/blog/add',veryToken, upload.single("image"), async (req,res)=>{
-    const { title, description,content,category } = req.body
+router.post('/blog/add',veryToken, async (req,res)=>{
+    const { title, description,content,category,thumbnail } = req.body
     if(!title)
         return res.status(400).json({success:false,message:'missing title'})
     try {
@@ -29,7 +29,7 @@ router.post('/blog/add',veryToken, upload.single("image"), async (req,res)=>{
             description,
             content,
             category,
-            thumbnail: req.file.filename,
+            thumbnail,
             createBy:req.userId
         })
     await newBlog.save()
