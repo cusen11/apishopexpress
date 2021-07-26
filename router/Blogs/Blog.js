@@ -2,8 +2,7 @@ const { json } = require('express');
 const express = require('express');
 const router = express.Router()
 const veryToken = require('../../middleware/auth')
-const blog = require('../../models/Blogs')
-const {upload} = require('../../helpers/fileHelper');
+const blog = require('../../models/Blogs') 
 
 //Method GET
 // GET all blog

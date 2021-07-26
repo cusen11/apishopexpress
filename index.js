@@ -42,5 +42,7 @@ app.use('/api',imagesRouter)
 app.use('/api',settingsRouter)
 app.use('/api',blogRouter) 
 
+
+
 const port = process.env.PORT || 4000
 app.listen(port, ()=> console.log("Server start thành công !!! Port " + port))
