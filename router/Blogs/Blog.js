@@ -44,13 +44,14 @@ router.post('/blog/add',veryToken, async (req,res)=>{
 // Edit Blog
 router.put('/blog/edit/:id',veryToken, async (req,res)=>{
     const { id } = req.params
-    const { title, description,content,category,thumbnail } = req.body
+    const { title, description,content,category,thumbnail,status } = req.body
     const updateBlog = {
         title, 
         description,
         content,
         category,
         thumbnail,
+        status
     }
     try {
         await blog.findByIdAndUpdate({_id:id},updateBlog, (err)=>{
