@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 const setting = require('../../models/Setting')
-const verifyToken = require('../../middleware/auth')
+const verifyToken = require('../../middleware/auth') 
 
 
 
@@ -103,4 +103,14 @@ router.put('/updatesettings/:id',verifyToken, async(req,res)=>{
     }
     
 })
+
+//method GET
+// Get data Setting
+
+router.get('/setting', verifyToken, async(req, res) => {
+    const dataSetting = await setting.find()
+    res.status(200).json({results: dataSetting})
+})
+
+
 module.exports = router
