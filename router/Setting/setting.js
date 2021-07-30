@@ -61,7 +61,8 @@ router.put('/updatesettings/:id',verifyToken, async(req,res)=>{
         instargram,
         mail,
         address,
-        phone
+        phone,
+        map
      } = req.body 
     try {
         let UpdateSetting = {
@@ -81,7 +82,7 @@ router.put('/updatesettings/:id',verifyToken, async(req,res)=>{
                     mail:mail,
                     address:address ,
                     phone:phone,
-                    map
+                    map:map
             } 
         }
         const updateCondition = {_id: req.params.id, user: req.userId}
