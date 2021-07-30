@@ -8,7 +8,6 @@ Content-Type: application/json
     "password": "123456"
 }
 
-
 ###
 //login
 POST https://sendeptraidb.herokuapp.com/api/login
@@ -110,7 +109,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGQwY
     "instargram":"intersen",
     "mail":"abc@gmail.com",
     "address":"đây là địa chỉ",
-    "phone":"0123123132"
+    "phone":"0123123132",
+    "map": "map"
 }
 ###
 //Update settings

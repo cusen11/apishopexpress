@@ -3,13 +3,13 @@ const router = express.Router()
 
 const setting = require('../../models/Setting')
 const verifyToken = require('../../middleware/auth') 
+const {upload} = require('../../helpers/fileHelper'); 
 
 
 
 //addnew settings
-router.post('/settings',verifyToken,  async(req,res)=>{
-    const { 
-        logo,
+router.post('/settings',verifyToken, upload.single("image") ,async(req,res)=>{
+    const {  
         companyname,
         slogan,
         facebook,
@@ -19,11 +19,12 @@ router.post('/settings',verifyToken,  async(req,res)=>{
         instargram,
         mail,
         address,
-        phone
+        phone,
+        map
      } = req.body 
      const settings = new setting({
         info:{
-            logo:logo,
+            logo:req.file.filename,
             companyName:companyname,
             slogan:slogan
         }, 
@@ -37,7 +38,8 @@ router.post('/settings',verifyToken,  async(req,res)=>{
         contact:{
             mail:mail,
             address:address ,
-            phone:phone
+            phone:phone,
+            map:map
         }
      }) 
 
@@ -46,9 +48,8 @@ router.post('/settings',verifyToken,  async(req,res)=>{
     
 })
 //update setting
-router.put('/updatesettings/:id',verifyToken, async(req,res)=>{
-    const { 
-        logo,
+router.put('/updatesettings/:id',verifyToken, upload.single("image"), async(req,res)=>{
+    const {  
         companyname,
         slogan,
         facebook,
@@ -63,7 +64,7 @@ router.put('/updatesettings/:id',verifyToken, async(req,res)=>{
     try {
         let UpdateSetting = {
                 info:{
-                    logo:logo,
+                    logo:req.file.filename,
                     companyName:companyname,
                     slogan:slogan
                 }, 
@@ -77,7 +78,8 @@ router.put('/updatesettings/:id',verifyToken, async(req,res)=>{
                 contact:{
                     mail:mail,
                     address:address ,
-                    phone:phone
+                    phone:phone,
+                    map
             } 
         }
         const updateCondition = {_id: req.params.id, user: req.userId}
@@ -93,15 +95,8 @@ router.put('/updatesettings/:id',verifyToken, async(req,res)=>{
         }) 
     } catch (error) {
         res.json({susscess: false, message:'Error' + error})
-    }
-
-
-    try {
-        
-    } catch (error) {
-        res.json({susscess: false, message:'Error' + error})
-    }
-    
+    } 
+ 
 })
 
 //method GET
