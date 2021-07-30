@@ -8,8 +8,9 @@ const {upload} = require('../../helpers/fileHelper');
 
 
 //addnew settings
-router.post('/settings',verifyToken, upload.single("image") ,async(req,res)=>{
+router.post('/settings',verifyToken,async(req,res)=>{
     const {  
+        logo,
         companyname,
         slogan,
         facebook,
@@ -24,7 +25,7 @@ router.post('/settings',verifyToken, upload.single("image") ,async(req,res)=>{
      } = req.body 
      const settings = new setting({
         info:{
-            logo:req.file.filename,
+            logo,
             companyName:companyname,
             slogan:slogan
         }, 
@@ -48,8 +49,9 @@ router.post('/settings',verifyToken, upload.single("image") ,async(req,res)=>{
     
 })
 //update setting
-router.put('/updatesettings/:id',verifyToken, upload.single("image"), async(req,res)=>{
+router.put('/updatesettings/:id',verifyToken, async(req,res)=>{
     const {  
+        logo,
         companyname,
         slogan,
         facebook,
@@ -64,7 +66,7 @@ router.put('/updatesettings/:id',verifyToken, upload.single("image"), async(req,
     try {
         let UpdateSetting = {
                 info:{
-                    logo:req.file.filename,
+                    logo,
                     companyName:companyname,
                     slogan:slogan
                 }, 
