@@ -25,7 +25,7 @@ router.post('/settings',verifyToken,async(req,res)=>{
      } = req.body 
      const settings = new setting({
         info:{
-            logo,
+            logo:logo,
             companyName:companyname,
             slogan:slogan
         }, 
@@ -67,7 +67,7 @@ router.put('/updatesettings/:id',verifyToken, async(req,res)=>{
     try {
         let UpdateSetting = {
                 info:{
-                    logo,
+                    logo:logo,
                     companyName:companyname,
                     slogan:slogan
                 }, 
