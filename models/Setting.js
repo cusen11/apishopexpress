@@ -43,6 +43,10 @@ const Settings = new schema({
         phone:{
             type:String
         }
+        ,
+        map:{
+            type:String
+        }
     }
 })
 
