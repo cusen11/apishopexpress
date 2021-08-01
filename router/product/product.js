@@ -40,7 +40,7 @@ router.post('/product',verifyToken,upload.single("image"), async (req,res)=>{
 
 
 //edit product
-router.post('/product/:id',verifyToken,upload.single("image"), async (req,res)=>{ 
+router.put('/product/:id',verifyToken,upload.single("image"), async (req,res)=>{ 
     const {name,description,price,category,size,color} = req.body 
 
     if(!name && !description)
