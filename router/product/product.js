@@ -41,6 +41,7 @@ router.post('/product',verifyToken, async (req,res)=>{
 
 //edit product
 router.put('/product/:id',verifyToken, async (req,res)=>{ 
+    const { id } = req.params
     const {name,description,price,category,size,color,images} = req.body 
     if(!name && !description)
         return res.status(400).json({success:false, message:'Missing name or/and description'})
