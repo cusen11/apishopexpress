@@ -42,24 +42,28 @@ router.post('/product',verifyToken, async (req,res)=>{
 //edit product
 router.put('/product/:id',verifyToken, async (req,res)=>{ 
     const {name,description,price,category,size,color,images} = req.body 
-
     if(!name && !description)
         return res.status(400).json({success:false, message:'Missing name or/and description'})
-    try {
-        const productItem = new product({
-            name:name,
-            description:description,
-            price:price,
-            images:images,
-            category:category,
-            size:size,
-            color:color,
-            createBy:req.userId
-        })
-
-    await productItem.save()  
-    res.status(200).json({success: true, message:"Create product success!!!"})
-    
+    const productItem ={
+        name:name,
+        description:description,
+        price:price,
+        images:images,
+        category:category,
+        size:size,
+        color:color,
+        createBy:req.userId
+    }
+    try { 
+        await product.findByIdAndUpdate({_id:id},productItem, (err)=>{
+            if(err){
+                res.status(400).json({status:false, message: err})
+            }
+            else{
+                res.status(200).json({status:true, message: `Update success`})
+            }
+         }   
+        )  
     } catch (error) {
         console.log(error)
     }  
