@@ -13,8 +13,8 @@ router.get('/product', async (req,res)=>{
     res.send(listProduct)
 })   
  //add new product
-router.post('/product',verifyToken,upload.single("image"), async (req,res)=>{ 
-    const {name,description,price,category,size,color} = req.body 
+router.post('/product',verifyToken, async (req,res)=>{ 
+    const {name,description,price,category,size,color,images} = req.body 
 
     if(!name && !description)
         return res.status(400).json({success:false, message:'Missing name or/and description'})
@@ -23,7 +23,7 @@ router.post('/product',verifyToken,upload.single("image"), async (req,res)=>{
             name:name,
             description:description,
             price:price,
-            images:req.file.filename,
+            images:images,
             category:category,
             size:size,
             color:color,
@@ -40,8 +40,8 @@ router.post('/product',verifyToken,upload.single("image"), async (req,res)=>{
 
 
 //edit product
-router.put('/product/:id',verifyToken,upload.single("image"), async (req,res)=>{ 
-    const {name,description,price,category,size,color} = req.body 
+router.put('/product/:id',verifyToken, async (req,res)=>{ 
+    const {name,description,price,category,size,color,images} = req.body 
 
     if(!name && !description)
         return res.status(400).json({success:false, message:'Missing name or/and description'})
@@ -50,7 +50,7 @@ router.put('/product/:id',verifyToken,upload.single("image"), async (req,res)=>{
             name:name,
             description:description,
             price:price,
-            images:req.file.filename,
+            images:images,
             category:category,
             size:size,
             color:color,
