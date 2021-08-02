@@ -144,7 +144,7 @@ router.post('/products', async(req,res)=>{
         const products = await product.find({}).limit(parseInt(limit)).skip(limit*pageNum)
         res.status(200).json({currentPage:page, results: products,totalItem:total, totalPage:Math.ceil(total/limit)})
     } catch (error) {
-        
+        console.log(err)
     }
 
 })

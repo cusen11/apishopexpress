@@ -9,6 +9,7 @@ const productRouter = require('./router/product/product')
 const imagesRouter = require('./router/Images/images')
 const settingsRouter = require('./router/Setting/setting')
 const blogRouter = require('./router/Blogs/Blog')
+const gridRouter = require('./router/GridCode/gridcode')
 
 //connect to database
 const mongoose = require("mongoose");
@@ -40,7 +41,8 @@ app.use('/api',authorization)
 app.use('/api',productRouter)
 app.use('/api',imagesRouter)
 app.use('/api',settingsRouter)
-app.use('/api',blogRouter) 
+app.use('/api',blogRouter)  
+app.use('/api',gridRouter)
 
 
 
