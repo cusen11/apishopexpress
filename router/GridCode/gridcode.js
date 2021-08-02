@@ -8,11 +8,12 @@ const verifyToken = require('../../middleware/auth')
 //Method POST
 // Create code
 router.post('/grid/create', verifyToken, async(req,res) =>{
-    const { code, discount } = req.body
+    const { name, code, discount } = req.body
     if(!code && !discount)  
         return res.status(400).json({success:false, message:'Missing code or/and discount'})
    try {
         const girdNew = new gridcode({
+            name,
             code,
             discount
         }) 
