@@ -70,6 +70,25 @@ router.put('/product/:id',verifyToken, async (req,res)=>{
     }  
 }) 
  
+
+//Method Delete
+//delete product
+router.delete('/product/delete/:id', verifyToken, async(req,res)=>{
+    const { id } = req.params
+    try {
+        product.deleteOne({_id: id },(err)=>{
+            if(err){
+                res.status(400).json({status:false, message: err})
+            }
+            else{
+                res.status(200).json({status:true, message: `Remove success`})
+            }
+        })
+    } catch (error) {
+        console.log(err)
+    }
+})
+
 //post list images in product 
 
 router.post('/listImage/:id',verifyToken,upload.array("files"), async (req,res)=>{ 
