@@ -14,7 +14,7 @@ router.get('/product', async (req,res)=>{
 })   
  //add new product
 router.post('/product',verifyToken, async (req,res)=>{ 
-    const {name,description,price,category,size,color,images} = req.body 
+    const {name,description,price,category,size,color,idImage,url} = req.body 
 
     if(!name && !description)
         return res.status(400).json({success:false, message:'Missing name or/and description'})
@@ -23,7 +23,10 @@ router.post('/product',verifyToken, async (req,res)=>{
             name:name,
             description:description,
             price:price,
-            images:images,
+            images:{
+                idImage,
+                url
+            },
             category:category,
             size:size,
             color:color,
@@ -42,14 +45,17 @@ router.post('/product',verifyToken, async (req,res)=>{
 //edit product
 router.put('/product/:id',verifyToken, async (req,res)=>{ 
     const { id } = req.params
-    const {name,description,price,category,size,color,images} = req.body 
+    const {name,description,price,category,size,color,idImage,url} = req.body 
     if(!name && !description)
         return res.status(400).json({success:false, message:'Missing name or/and description'})
     const productItem ={
         name:name,
         description:description,
         price:price,
-        images:images,
+        images:{
+            idImage,
+            url
+        },
         category:category,
         size:size,
         color:color,

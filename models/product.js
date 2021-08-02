@@ -15,8 +15,13 @@ const products = new schema({
         type:String,
         default: 'Liên hệ'
     },
-    images:{
-        type:String, 
+    images:{ 
+        idImage:{
+            type: String,
+        },
+        url:{
+            type:String
+        } 
     },
     category:{
         type:String,
