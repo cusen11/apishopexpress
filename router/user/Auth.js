@@ -31,8 +31,7 @@ router.post('/registration', async(req,res)=>{
             fistname,
             lastname,
             address,
-            avatar
-
+            avatar 
         })
         await newUser.save()
 
@@ -44,6 +43,47 @@ router.post('/registration', async(req,res)=>{
         console.log(error)
     }
 }) 
+
+//Method POST
+// Forgot password
+
+router.post('/forgot', async (req,res)=>{
+    const { username, password2, newpassword, repeat } = req.body
+    if(!username)
+        return res.status(401).json({status:false, message:"Missing user name"})
+    if(!password2)
+        return res.status(401).json({status:false, message:"Missing password 2"})
+    if(!newpassword)
+        return res.status(401).json({status:false, message:"Missing New password"})
+    if(!repeat)
+        return res.status(401).json({status:false, message:"Missing New password repeat"})
+    if(newpassword !== repeat)
+        return res.status(401).json({status:false, message:"New passwords do not match"})
+    
+    try {
+        const userCheck = await user.findOne({username: username}) 
+        if(!userCheck)
+            return res.status(400).json({success: false , message: 'Username is not correct'})
+        const passwordHash = await argon2.hash(newpassword)
+        const updatePassword = {
+            password: passwordHash
+        }
+        const passwordValid = await argon2.verify(userCheck.password2, password2)
+         if(!passwordValid)
+            return res.status(401).json({success: false , message: 'Password 2 is not correct'})
+        await user.findByIdAndUpdate({_id:userCheck._id},updatePassword, (err)=>{
+            if(err){
+                res.status(400).json({status:false, message: err})
+            }
+            else{
+                res.status(200).json({status:true, message:"Password recovery successful!!!!"})
+            }
+        })  
+    } catch (error) {
+        console.log(error)
+    }
+})
+
 //Method PUT
 // edit user
 router.put('/edituser/:id', async(req,res)=>{ 
@@ -103,7 +143,7 @@ router.put('/changepassword/:id', async (req,res)=>{
             }
         })  
         
-        } catch (error) {
+    } catch (error) {
         console.log(error)
     }
 })

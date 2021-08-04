@@ -16,6 +16,7 @@ Content-Type: application/json
 //edit user
 PUT http://localhost:4000/api/edituser/610a4cb4a310d72c7061efdd
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGQwYjMwMWExNDc4MTQ4NjgxMmQyNmQiLCJpYXQiOjE2MjQ1NTA2MTN9.4-J1AXf-GZRab41S06vCBcgkvy4sK4_QupdUfKlEwj8
 
 { 
     "fistname": "Sen 2",
@@ -28,13 +29,27 @@ Content-Type: application/json
 //change password
 PUT http://localhost:4000/api/changepassword/610a4cb4a310d72c7061efdd
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGQwYjMwMWExNDc4MTQ4NjgxMmQyNmQiLCJpYXQiOjE2MjQ1NTA2MTN9.4-J1AXf-GZRab41S06vCBcgkvy4sK4_QupdUfKlEwj8
 
 {
-    "password": "123456",
-    "newpassword": "123123"
+    "password": "123123",
+    "newpassword": "1234",
+    "repeat": "1234"
 
 }
- 
+###
+//forgot password
+POST http://localhost:4000/api/forgot
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGQwYjMwMWExNDc4MTQ4NjgxMmQyNmQiLCJpYXQiOjE2MjQ1NTA2MTN9.4-J1AXf-GZRab41S06vCBcgkvy4sK4_QupdUfKlEwj8
+
+{
+    "username": "cusenedit",
+    "password2": "111111",
+    "newpassword":"121",
+    "repeat": "12"
+
+} 
 ###
 //get all user
 
@@ -52,8 +67,8 @@ POST https://sendeptraidb.herokuapp.com/api/login
 Content-Type: application/json
 
 {
-    "username": "cusenbonchen",
-    "password": "123456"
+    "username": "cusenedit",
+    "password": "12"
 }
 ###
 //delete user
