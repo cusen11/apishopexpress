@@ -67,7 +67,7 @@ router.post('/login',async (req,res)=> {
 router.delete('/users/remove/:id', verifyToken, async (req,res)=>{
     const { id } = req.params
     const checkAdmin = await user.findOne({_id:id})
-    if(checkAdmin.level == 1){
+    if(checkAdmin.level === 1){
         res.status(401).json({success: false, message: "You don't have permission"})
     }
     else{ 
@@ -83,5 +83,18 @@ router.delete('/users/remove/:id', verifyToken, async (req,res)=>{
     
 })
 
+//Method POST
+//GridCode Pagination
+router.post('/listusers', async(req,res)=>{ 
+    try {
+        const { page, limit } = req.body  
+        const pageNum = parseInt(page - 1 ) || 0
+        const total = await user.countDocuments({})
+        const users = await user.find({}).limit(parseInt(limit)).skip(limit*pageNum)
+        res.status(200).json({currentPage:page, results: users,totalItem:total, totalPage:Math.ceil(total/limit)})
+    } catch (error) {
+        console.log(err)
+    }
 
+})
 module.exports = router

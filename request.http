@@ -9,6 +9,17 @@ Content-Type: application/json
 }
 
 ###
+//get all user
+
+POST http://localhost:4000/api/listusers
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGQwYjMwMWExNDc4MTQ4NjgxMmQyNmQiLCJpYXQiOjE2MjQ1NTA2MTN9.4-J1AXf-GZRab41S06vCBcgkvy4sK4_QupdUfKlEwj8
+
+{
+    "page": 1,
+    "limit": 20
+}
+###
 //login
 POST https://sendeptraidb.herokuapp.com/api/login
 Content-Type: application/json
