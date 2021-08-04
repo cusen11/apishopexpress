@@ -148,6 +148,41 @@ router.put('/changepassword/:id', async (req,res)=>{
     }
 })
 
+router.put('/changepassword2/:id', async (req,res)=>{
+    const { password2, newpassword, repeat  } = req.body
+    const { id } = req.params
+    if(!password2)
+        return res.status(401).json({status:false, message:"Missing Old password2"})
+    if(!newpassword)
+        return res.status(401).json({status:false, message:"Missing New password"})
+    if(!repeat)
+        return res.status(401).json({status:false, message:"Missing New password repeat"})
+    if(newpassword !== repeat)
+        return res.status(401).json({status:false, message:"New passwords do not match"})
+    try {
+        const checkUser = await user.findOne({_id:id})
+        
+        const passwordValid = await argon2.verify(checkUser.password2, password2)
+        if(!passwordValid)
+            return res.status(400).json({status: false, message: "Old passowrd not correct"})
+        const passwordHash = await argon2.hash(newpassword)
+        const updatePassword = {
+            password2: passwordHash
+        }
+        await user.findByIdAndUpdate({_id:id},updatePassword, (err)=>{
+            if(err){
+                res.status(400).json({status:false, message: err})
+            }
+            else{
+                res.status(200).json({status:true, message:"Change password success!!!"})
+            }
+        })  
+        
+    } catch (error) {
+        console.log(error)
+    }
+})
+
 //Method POST
 //Login
 router.post('/login',async (req,res)=> {
