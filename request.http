@@ -4,10 +4,37 @@ POST http://localhost:4000/api/registration
 Content-Type: application/json
 
 {
-    "username": "cusenremove",
-    "password": "123456"
+    "username": "cusenedit",
+    "password": "123456", 
+    "password2": "111111",
+    "fistname": "Sen",
+    "lastname": "Nguyễn",
+    "address":"TPHCM",
+    "avatar":"abc.com"
+}
+###
+//edit user
+PUT http://localhost:4000/api/edituser/610a4cb4a310d72c7061efdd
+Content-Type: application/json
+
+{ 
+    "fistname": "Sen 2",
+    "lastname": "Nguyễn 2",
+    "address":"TPHCM 2",
+    "avatar":"abc.com 2"
 }
 
+###
+//change password
+PUT http://localhost:4000/api/changepassword/610a4cb4a310d72c7061efdd
+Content-Type: application/json
+
+{
+    "password": "123456",
+    "newpassword": "123123"
+
+}
+ 
 ###
 //get all user
 
@@ -17,7 +44,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGQwY
 
 {
     "page": 1,
-    "limit": 20
+    "limit": 10
 }
 ###
 //login
