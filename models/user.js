@@ -33,6 +33,12 @@ const userSechma = new schema({
     address:{
         type:String
     },
+    phone:{
+        type:Number
+    },
+    mail:{
+        type:String
+    },
     createAt: {
         type: Date,
         default: Date.now()

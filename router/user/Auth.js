@@ -11,7 +11,7 @@ const router = express.Router()
 //Method POST
 // đăng ký mới user
 router.post('/registration', async(req,res)=>{ 
-    const { username, password, password2, level,address, fistname, lastname,avatar } = req.body 
+    const { username, password, password2, level,address, fistname, lastname,avatar,phone,mail } = req.body 
     //check null 
     if(!username || !password)
         return res.status(400).json({success: false, message:"Missing name or/and password"})
@@ -31,7 +31,9 @@ router.post('/registration', async(req,res)=>{
             fistname,
             lastname,
             address,
-            avatar 
+            avatar,
+            phone,
+            mail
         })
         await newUser.save()
 
@@ -88,14 +90,16 @@ router.post('/forgot', async (req,res)=>{
 // edit user
 router.put('/edituser/:id',verifyToken, async(req,res)=>{ 
     const { id } = req.params
-    const { address, fistname, lastname,avatar } = req.body 
+    const { address, fistname, lastname,avatar,phone,mail } = req.body 
      
     try {   
         const editUser = {    
             fistname,
             lastname,
             address,
-            avatar
+            avatar,
+            phone,
+            mail
 
         }  
         await user.findByIdAndUpdate({_id:id},editUser, (err)=>{
