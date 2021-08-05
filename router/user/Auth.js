@@ -86,7 +86,7 @@ router.post('/forgot', async (req,res)=>{
 
 //Method PUT
 // edit user
-router.put('/edituser/:id', async(req,res)=>{ 
+router.put('/edituser/:id',verifyToken, async(req,res)=>{ 
     const { id } = req.params
     const { address, fistname, lastname,avatar } = req.body 
      
@@ -113,7 +113,7 @@ router.put('/edituser/:id', async(req,res)=>{
 //Method PUT
 //Change password
 
-router.put('/changepassword/:id', async (req,res)=>{
+router.put('/changepassword/:id',verifyToken, async (req,res)=>{
     const { password, newpassword, repeat  } = req.body
     const { id } = req.params
     if(!password)
@@ -147,8 +147,9 @@ router.put('/changepassword/:id', async (req,res)=>{
         console.log(error)
     }
 })
-
-router.put('/changepassword2/:id', async (req,res)=>{
+//Method PUT
+//Change password2
+router.put('/changepassword2/:id',verifyToken, async (req,res)=>{
     const { password2, newpassword, repeat  } = req.body
     const { id } = req.params
     if(!password2)
